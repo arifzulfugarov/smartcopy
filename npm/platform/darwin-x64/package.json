@@ -1,0 +1,15 @@
+{
+  "name": "smartcopy-cli-darwin-x64",
+  "version": "0.3.1",
+  "description": "Smart Copy native Rust binary for darwin-x64",
+  "license": "MIT",
+  "os": [
+    "darwin"
+  ],
+  "cpu": [
+    "x64"
+  ],
+  "files": [
+    "bin/smartcopy"
+  ]
+}

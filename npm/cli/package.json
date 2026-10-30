@@ -1,0 +1,20 @@
+{
+  "name": "smartcopy-cli",
+  "version": "0.3.1",
+  "description": "Copy highlighted Chrome text automatically on macOS",
+  "license": "MIT",
+  "bin": {
+    "smartcopy": "bin/smartcopy.cjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "bin/",
+    "README.md"
+  ],
+  "optionalDependencies": {
+    "smartcopy-cli-darwin-arm64": "0.3.1",
+    "smartcopy-cli-darwin-x64": "0.3.1"
+  }
+}

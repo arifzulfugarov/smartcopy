@@ -1,0 +1,10 @@
+[package]
+name = "smartcopy"
+version = "0.3.1"
+edition = "2021"
+description = "Local copy-on-selection for Chrome on macOS"
+license = "MIT"
+
+[target.'cfg(target_os = "macos")'.dependencies]
+objc = "0.2.7"
+arboard = "3"
