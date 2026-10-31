@@ -5,12 +5,12 @@ Rust-native highlight-to-copy for Chrome on macOS. After one-time Accessibility 
 ## End-user commands (after npm publication)
 
 ```sh
-npx --yes smartcopy-cli on
-npx --yes smartcopy-cli status
-npx --yes smartcopy-cli off
+npx --yes @arifzulfugarov/smartcopy on
+npx --yes @arifzulfugarov/smartcopy status
+npx --yes @arifzulfugarov/smartcopy off
 ```
 
-Or install globally: `npm install -g smartcopy-cli`, then `smartcopy on`.
+Or install globally: `npm install -g @arifzulfugarov/smartcopy`, then `smartcopy on`.
 
 `on` installs `~/Applications/Smart Copy.app` only if it is absent; it does not overwrite or re-sign it on each toggle. Run `smartcopy update` when deliberately replacing it. macOS may ask for Accessibility approval on first installation or after updates; this cannot be bypassed. Chrome accessibility support is requested by the native worker when needed, without requiring a browser extension.
 

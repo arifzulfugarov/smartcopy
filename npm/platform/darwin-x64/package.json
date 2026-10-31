@@ -1,5 +1,5 @@
 {
-  "name": "smartcopy-cli-darwin-x64",
+  "name": "@arifzulfugarov/smartcopy-darwin-x64",
   "version": "0.3.1",
   "description": "Smart Copy native Rust binary for darwin-x64",
   "license": "MIT",
@@ -11,5 +11,9 @@
   ],
   "files": [
     "bin/smartcopy"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arifzulfugarov/smartcopy.git"
+  }
 }

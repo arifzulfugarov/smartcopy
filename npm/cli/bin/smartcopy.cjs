@@ -8,11 +8,11 @@ if (process.platform !== 'darwin') {
   console.error('Smart Copy currently supports macOS only. Windows support is planned.');
   process.exit(1);
 }
-const name = `smartcopy-cli-darwin-${process.arch}`;
+const name = `@arifzulfugarov/smartcopy-darwin-${process.arch}`;
 let bin;
 try { bin = join(req.resolve(`${name}/package.json`), '..', 'bin', 'smartcopy'); }
 catch (_) {
-  console.error(`Missing ${name}. Reinstall with optional dependencies enabled (npm install -g smartcopy-cli).`);
+  console.error(`Missing ${name}. Reinstall with optional dependencies enabled (npm install -g @arifzulfugarov/smartcopy).`);
   process.exit(1);
 }
 const result = spawnSync(bin, process.argv.slice(2), { stdio: 'inherit' });

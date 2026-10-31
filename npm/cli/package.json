@@ -1,5 +1,5 @@
 {
-  "name": "smartcopy-cli",
+  "name": "@arifzulfugarov/smartcopy",
   "version": "0.3.1",
   "description": "Copy highlighted Chrome text automatically on macOS",
   "license": "MIT",
@@ -14,7 +14,11 @@
     "README.md"
   ],
   "optionalDependencies": {
-    "smartcopy-cli-darwin-arm64": "0.3.1",
-    "smartcopy-cli-darwin-x64": "0.3.1"
+    "@arifzulfugarov/smartcopy-darwin-arm64": "0.3.1",
+    "@arifzulfugarov/smartcopy-darwin-x64": "0.3.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arifzulfugarov/smartcopy.git"
   }
 }
