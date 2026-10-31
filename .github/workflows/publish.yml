@@ -1,0 +1,65 @@
+name: Publish Smart Copy to npm
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: macos-15
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target: aarch64-apple-darwin
+            arch: darwin-arm64
+          - target: x86_64-apple-darwin
+            arch: darwin-x64
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+      - name: Build native binary
+        run: cargo build --release --target '${{ matrix.target }}'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: smartcopy-${{ matrix.arch }}
+          path: target/${{ matrix.target }}/release/smartcopy
+          if-no-files-found: error
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: smartcopy-darwin-arm64
+          path: npm/platform/darwin-arm64/bin
+      - uses: actions/download-artifact@v4
+        with:
+          name: smartcopy-darwin-x64
+          path: npm/platform/darwin-x64/bin
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          registry-url: https://registry.npmjs.org/
+      - name: Verify release files and scoped package names
+        run: |
+          node scripts/verify-release.cjs
+          node -e "const p=require('./npm/cli/package.json');if(p.name!=='@arifzulfugarov/smartcopy')process.exit(1)"
+          test -s npm/platform/darwin-arm64/bin/smartcopy
+          test -s npm/platform/darwin-x64/bin/smartcopy
+      - name: Publish macOS native packages
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          npm publish ./npm/platform/darwin-arm64 --access public
+          npm publish ./npm/platform/darwin-x64 --access public
+      - name: Publish Smart Copy CLI
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm publish ./npm/cli --access public
